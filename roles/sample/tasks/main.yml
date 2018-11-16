@@ -1,0 +1,11 @@
+- name: Check /opt/demo directory exists or not 
+  stat:
+    path: /opt/demo
+  register: out
+
+- name: Loading file-not-exists play 
+  include: file-not-exists.yml
+  when: not out.stat.exists
+
+- name: Loading file-exists play
+  include: file-exists.yml
